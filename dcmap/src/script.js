@@ -6,6 +6,7 @@ class DCMap {
     this.streetLookup = new Map();
   }
 
+
   /**
    * Use Leaflet to initialize a new map
    * @param {string} htmlId - HTML div ID to attach the map to
@@ -18,12 +19,14 @@ class DCMap {
     this.addBaseMap(map);
     return map;
   }
-
+  
   /**
    * Add street data to the map
    * @param {L.Map} map - Leaflet map
    */
   addStreetData(map) {
+    console.log(map)
+    this.getZoomSize()
     // TODO: See if we can find a better roads layer eventually
     axios
       .get("/dcmap/street_centerlines_2013_small.geojson")
@@ -153,6 +156,13 @@ class DCMap {
         });
     });
   }
+
+  // Started to build a function that would adjust layer lines based on zoom level
+  getZoomSize(){
+    const zoomLevel = this.map.getZoom()
+    console.log(zoomLevel)
+  }
+
 }
 
 new DCMap();
