@@ -1,4 +1,4 @@
-import geopandas as gpd
+# import geopandas as gpd
 import pandas as pd
 import boto3
 import os
@@ -7,7 +7,7 @@ from connect_to_rds import get_connection_strings
 import argparse 
 import datetime
 from datetime import timezone
-import requests
+# import requests
 import json
 import sys
 import csv
@@ -57,6 +57,11 @@ def get_dc_open_dataset(dataset:str, AWS_Credentials:dict, formats:list, input_u
             'url': [('complete','https://opendata.arcgis.com/datasets/fcfbf29074e549d8aff9b9c708179291_1.geojson')]
             ,'prefix' :'source-data/dc-open-data/anc_boundaries/'
             ,'metadata' :{'target_schema':'source_data', 'target_table': 'anc_boundaries',"dataset_info":"https://opendata.dc.gov/datasets/advisory-neighborhood-commissions-from-2013"}
+        }
+        ,'basic_business_licenses' : {
+            'url': [('complete','https://opendata.arcgis.com/datasets/85bf98d3915f412c8a4de706f2d13513_0.geojson')]
+            ,'prefix' :'source-data/dc-open-data/bbl/'
+            ,'metadata' :{'target_schema':'source_data', 'target_table': 'basic_business_license',"dataset_info":"https://opendata.dc.gov/datasets/basic-business-licenses/"}
         }
         ,'bike_trails' : {
             'url': [('complete','https://opendata.arcgis.com/datasets/e8c2b7ef54fb43d9a2ed1b0b75d0a14d_4.geojson')]
@@ -131,7 +136,10 @@ def get_dc_open_dataset(dataset:str, AWS_Credentials:dict, formats:list, input_u
 
         ,'moving_violations' : {
             'url': [  #2021
-                     ('2021_05','https://opendata.arcgis.com/datasets/4ac4f0b5379e4e02bab9d3fb198a1a44_4.geojson')
+                     ('2021_08','https://opendata.arcgis.com/datasets/49bac855d3d44ce6b01f9948c2925357_7.geojson')
+                    ,('2021_07','https://opendata.arcgis.com/datasets/5dc96a2056d84d14838e4b65c06d454e_6.geojson')
+                    ,('2021_06','https://opendata.arcgis.com/datasets/301dbe9548a2423d876da33ef416536f_5.geojson')
+                    ,('2021_05','https://opendata.arcgis.com/datasets/4ac4f0b5379e4e02bab9d3fb198a1a44_4.geojson')
                     ,('2021_04','https://opendata.arcgis.com/datasets/055b11cac4f64a809ccca1d9ab64df6b_3.geojson')
                     ,('2021_03','https://opendata.arcgis.com/datasets/660ac078bea649e2a9a1c32abbff1059_2.geojson')
                     ,('2021_02','https://opendata.arcgis.com/datasets/74cbdef730fe481995b37abb2abbf6d0_1.geojson')
@@ -166,7 +174,8 @@ def get_dc_open_dataset(dataset:str, AWS_Credentials:dict, formats:list, input_u
                     #2018
                     ,('2018_12','https://opendata.arcgis.com/datasets/1bf00863fedf4d09a236e4353dba1670_11.geojson')
                     ,('2018_11','https://opendata.arcgis.com/datasets/b3aa63faaeb243ea87eb58f2eb5a1931_10.geojson')
-                    #Missing October 2018 - As of May 2021, the October 2018 is just a duplicate of November 2018
+                    # Oct 2018 Added Oct 2021
+                    ,('2018_10_2','https://opendata.arcgis.com/datasets/a9f464dc91d9465394a90d44c61eb06a_9.geojson')
                     ,('2018_09','https://opendata.arcgis.com/datasets/03dfb384c57d40f8b05fa5936b23fb82_8.geojson')
                     ,('2018_08','https://opendata.arcgis.com/datasets/e2b5f90018c3487ea293f53edadbd69a_7.geojson')
                      # July 2018 Added July 2021
